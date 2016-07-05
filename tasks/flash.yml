@@ -1,0 +1,7 @@
+---
+# Install tasks for ansible-role-debian flash player
+- name: Install required system packages.
+  become: yes
+  apt: pkg=flashplugin-nonfree state=installed update_cache=true
+
+

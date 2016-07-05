@@ -3,7 +3,10 @@ language: python
 python: "2.7"
 
 # Use the new container infrastructure
-sudo: false
+sudo: true
+
+before_install:
+  - sudo apt-get update -qq
 
 # Install ansible
 addons:
@@ -25,5 +28,33 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -e 'username=travis'"
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -e 'username=travis'
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  
+  #TODO: test if postgres installed properly. 
+  # Check running  has exit code 0
+  #- >
+  #  cd /home/travis/Public/Library 
+  #  && (echo 'Status of Library directory is 0 - pass' && exit 0)
+  #  || (echo 'Status of Library directory is not 0 - fail' && exit 1)
+
 notifications:
+  #TODO: webhooks for galaxy
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
+    
+   
+
+
+
+
+
+
+  

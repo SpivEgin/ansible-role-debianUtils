@@ -1,19 +1,19 @@
 ---
 # Install tasks for ansible-role-ubuntu samba
 - name: Install required system packages.
+  become: yes
   apt: pkg={{ item }} state=installed update_cache=true
   with_items: "{{ samba_packages }}"
 
+- name: Move old config file
+  become: yes
+  command: mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
+
 - name: Copy config files
   copy: src=smb.conf dest=/etc/samba/smb.conf mode=0664
-  tags: 
-    - setup
 
 - name: Restart service smbd
   service: name=smbd state=restarted
-
-- name: Restart service nmbd
-  service: name=nmbd state=restarted
 
 
 

@@ -8,6 +8,7 @@
   tags: 
     - install
 
-- include: display.yml
-  tags: 
-    - install
+- include: flash.yml
+  tags:
+      - install
+

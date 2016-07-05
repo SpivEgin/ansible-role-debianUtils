@@ -1,4 +1,7 @@
 ---
 # vars file for ansible-role-ubuntu
 samba_packages:
-    - samba
+    - libcups2 
+    - samba 
+    - samba-common 
+    - cups    
