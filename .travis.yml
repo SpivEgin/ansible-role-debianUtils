@@ -38,12 +38,11 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
   
-  #TODO: test if postgres installed properly. 
-  # Check running  has exit code 0
-  #- >
-  #  cd /home/travis/Public/Library 
-  #  && (echo 'Status of Library directory is 0 - pass' && exit 0)
-  #  || (echo 'Status of Library directory is not 0 - fail' && exit 1)
+  # Check running smbd has exit code 0
+  - >
+    sudo service smbd status
+    && (echo 'Status of smbd service is 0 - pass' && exit 0)
+    || (echo 'Status of smbd service is not 0 - fail' && exit 1)
 
 notifications:
   #TODO: webhooks for galaxy
