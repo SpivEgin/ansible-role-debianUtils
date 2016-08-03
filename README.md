@@ -1,6 +1,6 @@
 ansible-role-debianUtils
 =========
-[![Travis](https://img.shields.io/travis/louwandre90/ansible-role-debianUtils.svg?style=flat-square)](https://travis-ci.org/louwandre90/ansible-role-debianUtils.svg?branch=master)
+[![Travis](https://img.shields.io/travis/louwandre90/ansible-role-debianUtils.svg?style=flat-square)](https://travis-ci.org/louwandre90/ansible-role-debianUtils)
 [![Ansible Role](https://img.shields.io/badge/role-louwandre90.debianUtils-blue.svg?style=flat-square)](https://galaxy.ansible.com/louwandre90/debianUtils/)
 
 This role installs the following packages for Debian:
